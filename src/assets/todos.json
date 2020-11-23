@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "checked": true,
+    "description": "Create the first Angular application"
+  },
+  {
+    "id": 2,
+    "checked": true,
+    "description": "Create Todo component"
+  },
+  {
+    "id": 3,
+    "checked": true,
+    "description": "Show todos"
+  },
+  {
+    "id": 4,
+    "checked": false,
+    "description": "Add todos"
+  },
+  {
+    "id": 5,
+    "checked": false,
+    "description": "Do todos"
+  }
+]
