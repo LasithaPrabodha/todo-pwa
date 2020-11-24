@@ -1,16 +1,34 @@
 import { Component } from '@angular/core';
-import { TodoService } from './services/todo.service';
-import { TodoItem } from './todo.type';
-
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { IToDoItem } from './models/IToDoItem';
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss'],
 })
 export class TodoComponent {
-  constructor(private todoService: TodoService) {}
+  items: Observable<IToDoItem[]>;
+  constructor(private firestore: AngularFirestore) {
+    this.items = firestore
+      .collection<IToDoItem>('todos')
+      .snapshotChanges()
+      .pipe(
+        map((actions) => {
+          return actions.map((a) => {
+            const data = a.payload.doc.data() as IToDoItem;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          });
+        })
+      );
+  }
 
-  get items(): TodoItem[] {
-    return this.todoService.items;
+  update(id, { checked }) {
+    this.firestore
+      .collection('todos')
+      .doc(id)
+      .set({ checked }, { merge: true });
   }
 }

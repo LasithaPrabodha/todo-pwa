@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "todoapp-79ddb": {
+      "hosting": {
+        "todo": [
+          "todoapp-79ddb"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "todoapp-79ddb"
+  }
+}

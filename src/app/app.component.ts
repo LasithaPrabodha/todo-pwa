@@ -1,17 +1,18 @@
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map, shareReplay, withLatestFrom } from 'rxjs/operators';
 import { LogUpdateService } from './services/log-update.service';
+import { MessagingService } from './services/messaging.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   @ViewChild('drawer') drawer: MatSidenav;
 
   isHandset$: Observable<boolean> = this.breakpointObserver
@@ -22,8 +23,9 @@ export class AppComponent {
     );
 
   constructor(
-    private breakpointObserver: BreakpointObserver,
     logUpdateService: LogUpdateService,
+    private breakpointObserver: BreakpointObserver,
+    private messagingService: MessagingService,
     router: Router
   ) {
     router.events
@@ -32,5 +34,9 @@ export class AppComponent {
         filter(([a, b]) => b && a instanceof NavigationEnd)
       )
       .subscribe((_) => this.drawer.close());
+  }
+  ngOnInit(): void {
+    this.messagingService.requestPermission();
+    this.messagingService.receiveMessage();
   }
 }
