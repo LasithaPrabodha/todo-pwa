@@ -4,6 +4,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map, shareReplay, withLatestFrom } from 'rxjs/operators';
+import { LogUpdateService } from './services/log-update.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,7 +20,11 @@ export class AppComponent implements OnInit {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, router: Router) {
+  constructor(
+    logUpdateService: LogUpdateService,
+    private breakpointObserver: BreakpointObserver,
+    router: Router
+  ) {
     router.events
       .pipe(
         withLatestFrom(this.isHandset$),
