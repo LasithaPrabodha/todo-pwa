@@ -1,8 +1,4 @@
 import { Component } from '@angular/core';
-import {
-  AngularFirestore,
-  AngularFirestoreCollection,
-} from '@angular/fire/firestore';
 
 import {
   FormGroupDirective,
@@ -10,14 +6,12 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { IToDoItem } from '../models/IToDoItem';
 
 @Component({
   selector: 'app-todo-add',
   templateUrl: 'todo-add.component.html',
 })
 export class TodoAddComponent {
-  private toDoCollection: AngularFirestoreCollection<IToDoItem>;
   minDate = new Date();
 
   newTodoForm = new FormGroup({
@@ -25,19 +19,14 @@ export class TodoAddComponent {
     date: new FormControl(null, [Validators.required]),
   });
 
-  constructor(firestore: AngularFirestore) {
-    this.toDoCollection = firestore.collection<IToDoItem>('todos');
-  }
+  constructor() {}
 
   onAdd(form: FormGroupDirective) {
     if (this.newTodoForm.valid && this.newTodoForm.dirty) {
-      const item: IToDoItem = {
-        checked: false,
-        description: this.newTodoForm.value.description,
-        date: this.newTodoForm.value.date,
+      const item: any = {
+        completed: false,
+        title: this.newTodoForm.value.description,
       };
-
-      this.toDoCollection.add(item);
 
       form.resetForm();
       this.newTodoForm.reset();

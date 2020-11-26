@@ -5,28 +5,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
-import { AngularFireModule } from '@angular/fire';
 import { MaterialModule } from './material.module';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireMessagingModule } from '@angular/fire/messaging';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
     LayoutModule,
     MaterialModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule.enablePersistence(),
-    AngularFireMessagingModule,
-    ServiceWorkerModule.register('master-sw.js', {
-      enabled: environment.production,
-    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

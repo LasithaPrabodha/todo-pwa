@@ -11,12 +11,8 @@
     <mat-card-content>
       <mat-list>
         <mat-list-item *ngFor="let open of list | todos: false; let i = index">
-          <mat-checkbox
-            [(ngModel)]="open.checked"
-            (change)="update(open.id, $event)"
-          >
-            {{ open.description }} -
-            <small>{{ open.date.toDate().toDateString() }}</small>
+          <mat-checkbox [(ngModel)]="open.checked">
+            {{ open.description }}
           </mat-checkbox>
         </mat-list-item>
       </mat-list>
@@ -29,12 +25,8 @@
     <mat-card-content>
       <mat-list>
         <mat-list-item *ngFor="let done of list | todos: true">
-          <mat-checkbox
-            [(ngModel)]="done.checked"
-            (change)="update(done.id, $event)"
-          >
-            {{ done.description }} -
-            <small>{{ done.date.toDate().toDateString() }}</small>
+          <mat-checkbox [(ngModel)]="done.checked">
+            {{ done.description }}
           </mat-checkbox>
         </mat-list-item>
       </mat-list>
