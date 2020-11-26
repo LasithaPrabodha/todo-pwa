@@ -5,6 +5,8 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter, map, shareReplay, withLatestFrom } from 'rxjs/operators';
 import { LogUpdateService } from './services/log-update.service';
+import { MessagingService } from './services/messaging.service';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,6 +25,7 @@ export class AppComponent implements OnInit {
   constructor(
     logUpdateService: LogUpdateService,
     private breakpointObserver: BreakpointObserver,
+    private messagingService: MessagingService,
     router: Router
   ) {
     router.events
@@ -32,5 +35,8 @@ export class AppComponent implements OnInit {
       )
       .subscribe((_) => this.drawer.close());
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.messagingService.requestPermission();
+    this.messagingService.receiveMessage();
+  }
 }
