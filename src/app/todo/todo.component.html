@@ -15,8 +15,7 @@
             [(ngModel)]="open.checked"
             (change)="update(open.id, $event)"
           >
-            {{ open.description }} -
-            <small>{{ open.date.toDate().toDateString() }}</small>
+            {{ open.description }}
           </mat-checkbox>
         </mat-list-item>
       </mat-list>
@@ -33,8 +32,7 @@
             [(ngModel)]="done.checked"
             (change)="update(done.id, $event)"
           >
-            {{ done.description }} -
-            <small>{{ done.date.toDate().toDateString() }}</small>
+            {{ done.description }}
           </mat-checkbox>
         </mat-list-item>
       </mat-list>

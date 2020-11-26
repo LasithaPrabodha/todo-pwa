@@ -7,40 +7,17 @@
   >
     <mat-card-header> Create a new todo </mat-card-header>
     <mat-card-content>
-      <p>
-        <mat-form-field>
-          <mat-label>Description</mat-label>
-          <input
-            matInput
-            formControlName="description"
-            placeholder="Enter new todo here"
-          />
-          <mat-error
-            *ngIf="newTodoForm.get('description').hasError('required')"
-          >
-            Description is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-      </p>
-      <p>
-        <mat-form-field>
-          <mat-label>Date</mat-label>
-          <input
-            matInput
-            formControlName="date"
-            [matDatepicker]="picker1"
-            [min]="minDate"
-          />
-          <mat-datepicker-toggle
-            matSuffix
-            [for]="picker1"
-          ></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-          <mat-error *ngIf="newTodoForm.get('date').hasError('required')">
-            Date is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-      </p>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input
+          matInput
+          formControlName="description"
+          placeholder="Enter new todo here"
+        />
+        <mat-error *ngIf="newTodoForm.get('description').hasError('required')">
+          Description is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button type="submit">Create</button>

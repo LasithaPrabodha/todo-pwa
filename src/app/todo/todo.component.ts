@@ -15,7 +15,7 @@ export class TodoComponent {
       .collection<IToDoItem>('todos')
       .snapshotChanges()
       .pipe(
-        map((actions) => {
+        map((actions: any) => {
           return actions.map((a) => {
             const data = a.payload.doc.data() as IToDoItem;
             const id = a.payload.doc.id;

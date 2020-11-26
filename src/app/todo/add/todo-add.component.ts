@@ -22,7 +22,6 @@ export class TodoAddComponent {
 
   newTodoForm = new FormGroup({
     description: new FormControl(null, [Validators.required]),
-    date: new FormControl(null, [Validators.required]),
   });
 
   constructor(firestore: AngularFirestore) {
@@ -34,7 +33,6 @@ export class TodoAddComponent {
       const item: IToDoItem = {
         checked: false,
         description: this.newTodoForm.value.description,
-        date: this.newTodoForm.value.date,
       };
 
       this.toDoCollection.add(item);
